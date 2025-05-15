@@ -70,13 +70,40 @@
 </head>
 
 <body class="animated-bg">
+<!-- ✅ Cosmic Navigation Bar with Dark Mode Toggle -->
+<nav class="bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between flex-wrap">
+  
+      <!-- 🔮 Logo / Title -->
+      <div class="text-xl font-bold text-white">
+        🧬 2026 BioE Senior Design
+      </div>
+  
+      <!-- 🌌 Menu + Toggle -->
+      <div class="flex items-center space-x-6 mt-2 md:mt-0">
+  
+        <!-- Menu Links -->
+        <div class="hidden md:flex space-x-6">
+          <a href="summary.html" class="text-white hover:text-yellow-300 transition">Summary</a>
+          <a href="teams.html" class="text-white hover:text-yellow-300 transition">Team Members</a>
+          <a href="timeline.html" class="text-white hover:text-yellow-300 transition">Timeline</a>
+          <a href="diary.html" class="text-white hover:text-yellow-300 transition">Project Diary</a>
+        </div>
+  
+        <!-- 🌗 Dark Mode Toggle Button -->
+        <button onclick="toggleTheme()" class="bg-white text-black px-3 py-1.5 rounded shadow hover:bg-gray-100 transition">
+          🌗 Dark Mode
+        </button>
+      </div>
+  
+    </div>
+  </nav>
+  
+  
 
   <!-- ✅ Header Section -->
   <div class="text-center py-10 bg-gradient-to-r from-blue-500 to-purple-500 text-white shadow-lg">
     <h1 class="text-3xl font-bold">Welcome to Taojin Peng and Zhixuan Song's Senior Design Project!</h1>
-    <button onclick="toggleTheme()" class="mt-4 bg-white text-black px-4 py-2 rounded shadow hover:bg-gray-100 transition">
-      🌗 Toggle Mode
-    </button>
   </div>
 
   <!-- ✅ Project Summary -->
@@ -112,7 +139,6 @@
   
     </div>
   </section>  
-  
 
     <!-- ✅ Timeline Section -->
   <section id="timeline" class="text-center mt-10">
