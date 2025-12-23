@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Senior Design | APOE iPSC Brain Organoids</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#fff;
+      --fg:#000;
+      --grey: rgba(0,0,0,.45);
+      --pad: 18px;
+      --max: 1180px;
+
+      /* KEEP SAME MARGINS/GAPS */
+      --gap: 22px;
+
+      /* Tile sizes */
+      --tileW: min(46vw, 540px);
+      --tileH: min(30vw, 400px);
+
+      /* Title max width */
+      --titleMax: 1300px;
+
+      /* BLOOD RED COLOR */
+      --titleColor: #A61717; 
+    }
+
+    html, body{
+      height:100%;
+      margin:0;
+      background:var(--bg);
+      color:var(--fg);
+      font-family:"Archivo Black", sans-serif;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      overflow-x:hidden;
+    }
+    *, *::before, *::after{ box-sizing:border-box; }
+    a{ color:inherit; text-decoration:none; }
+    a:hover, a:focus{ text-decoration:none; }
+    ::selection{ background:#000; color:#fff; }
+
+    /* remove all boundary/divider lines */
+    *{ border:none !important; outline-color: transparent; }
+
+    /* ----------------------------
+       HEADER
+    ---------------------------- */
+    header{
+      position:fixed;
+      top:0;
+      left:0;
+      right:0;
+      z-index:50;
+      background: rgba(255,255,255,.92);
+      backdrop-filter: blur(6px);
+    }
+
+    .topbar{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:12px var(--pad);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position: relative;
+      gap:12px;
+    }
+
+    nav.center-nav{
+      display:flex;
+      gap:14px 18px;
+      justify-content:center;
+      flex-wrap:wrap;
+      padding-right: 60px;
+    }
+
+    .navlink{
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:12px;
+      font-weight:400;
+      color:var(--grey);
+      padding:6px 2px;
+      transition: color .2s ease;
+    }
+    .navlink:hover,
+    .navlink:focus,
+    .navlink.active{
+      color:#000;
+      outline:none;
+    }
+
+    .right{
+      position: absolute;
+      right: var(--pad);
+      top: 50%;
+      transform: translateY(-50%);
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+
+    @media (max-width: 600px){
+      nav.center-nav{
+        padding-right: 0;
+        gap: 8px 12px;
+      }
+      .navlink{
+        font-size: 11px;
+        letter-spacing: .05em;
+      }
+      .right{
+        display: none;
+      }
+    }
+
+    .hamburger, .closebtn{
+      appearance:none;
+      background:transparent;
+      padding:8px 10px;
+      cursor:pointer;
+      border-radius:999px;
+      font-size:11px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      font-weight:400;
+      color: var(--grey);
+      transition: color .2s ease, background .2s ease;
+    }
+    .hamburger:hover, .closebtn:hover{ color:#000; background: rgba(0,0,0,.04); }
+
+    /* ----------------------------
+       FIXED CENTER TITLE - SOLID BLOOD RED
+    ---------------------------- */
+    .center-title{
+      position:fixed;
+      inset: 0;
+      z-index:30;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events:none;
+    }
+
+    .center-title h1{
+      margin:0;
+      font-weight:400;
+      line-height:0.98;
+      letter-spacing:-0.03em;
+      width:min(var(--titleMax), calc(100vw - 2*var(--pad)));
+      text-align:center;
+      font-size: clamp(50px, 6vw, 140px);
+      color: var(--titleColor); /* Blood Red - solid color, no masking */
+    }
+
+    /* ----------------------------
+       MAIN
+    ---------------------------- */
+    main{
+      max-width:var(--max);
+      margin:0 auto;
+      padding: 60px var(--pad) 90px;
+      position:relative;
+      z-index:1;
+    }
+
+    .gallery-wrap{
+      min-height: calc(100vh - 64px);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 6vh 0 10vh;
+    }
+
+    .gallery{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gap);
+      align-items:center;
+    }
+
+    .col{
+      display:grid;
+      grid-template-rows: repeat(4, auto);
+      gap: var(--gap);
+      align-items:center;
+      justify-items:center;
+    }
+
+    .tile{
+      width: var(--tileW);
+      height: var(--tileH);
+      display:block;
+      position:relative;
+      overflow:hidden;
+      background: rgba(0,0,0,.06);
+      transform: translateZ(0);
+    }
+
+    .tile img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      filter: grayscale(100%);
+      transition: filter .25s ease, transform .25s ease;
+      will-change: transform, filter;
+    }
+    .tile:hover img{
+      filter: grayscale(0%);
+      transform: scale(1.02);
+    }
+
+    .cap{
+      position:absolute;
+      left:10px;
+      top:10px;
+      color: rgba(0,0,0,.72);
+      mix-blend-mode:multiply;
+      pointer-events:none;
+      text-transform:uppercase;
+      letter-spacing:.10em;
+      font-size:11px;
+      line-height:1.2;
+    }
+
+    /* Responsive */
+    @media (max-width: 820px){
+      :root{
+        --tileW: min(92vw, 640px);
+        --tileH: 320px;
+      }
+      .gallery{ grid-template-columns: 1fr; }
+      .gallery-wrap{ padding: 8vh 0 12vh; }
+      .center-title h1{
+        font-size: clamp(38px, 10vw, 90px);
+        line-height: 0.95;
+      }
+    }
+
+    /* ----------------------------
+       MENU OVERLAY
+    ---------------------------- */
+    .overlay{
+      position:fixed;
+      inset:0;
+      background:#fff;
+      z-index:100;
+      display:none;
+    }
+    .overlay.open{ display:block; }
+    .overlay-inner{
+      max-width:var(--max);
+      margin:0 auto;
+      padding:18px var(--pad) 36px;
+      height:100%;
+      display:grid;
+      grid-template-rows:auto 1fr auto;
+      gap:18px;
+    }
+    .overlay-top{
+      display:flex;
+      justify-content:flex-end;
+    }
+    .overlay-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:18px;
+    }
+    @media (max-width:720px){
+      .overlay-grid{ grid-template-columns:1fr; }
+    }
+    .overlay-h{
+      font-size:11px;
+      font-weight:400;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      margin:0 0 10px 0;
+      color: var(--grey);
+    }
+    .overlay-list{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:10px;
+    }
+    .overlay-item a{
+      display:inline-block;
+      text-transform:uppercase;
+      letter-spacing:.10em;
+      font-weight:400;
+      font-size:12px;
+      line-height:1.2;
+      color: var(--grey);
+      transition: color .2s ease;
+    }
+    .overlay-item a:hover,
+    .overlay-item a:focus{
+      color:#000;
+      outline:none;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="topbar">
+      <nav class="center-nav" aria-label="Primary">
+        <a class="navlink active" href="index.html">Main</a>
+        <a class="navlink" href="background.html">Background</a>
+        <a class="navlink" href="wetlab.html">Wet-Lab</a>
+        <a class="navlink" href="compbio.html">Comp-Bio</a>
+        <a class="navlink" href="team.html">Team</a>
+        <a class="navlink" href="ack.html">Acknowledgements</a>
+      </nav>
+
+      <div class="right">
+        <button class="hamburger" id="openMenu" aria-haspopup="dialog" aria-controls="menuOverlay">Menu</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Single title layer - solid blood red, no masking -->
+  <div class="center-title" aria-hidden="true">
+    <h1>Team 23: Modeling APOE Genotype-Specific Alzheimer's Disease Pathology Using Isogenic iPSC Derived Brain Organoids</h1>
+  </div>
+
+  <section class="overlay" id="menuOverlay" role="dialog" aria-modal="true" aria-label="Site menu">
+    <div class="overlay-inner">
+      <div class="overlay-top">
+        <button class="closebtn" id="closeMenu">Close</button>
+      </div>
+      <div class="overlay-grid">
+        <div>
+          <h3 class="overlay-h">Navigate</h3>
+          <ul class="overlay-list">
+            <li class="overlay-item"><a href="index.html" data-close>Main</a></li>
+            <li class="overlay-item"><a href="background.html" data-close>Background</a></li>
+            <li class="overlay-item"><a href="wetlab.html" data-close>Wet-Lab</a></li>
+            <li class="overlay-item"><a href="compbio.html" data-close>Comp-Bio</a></li>
+            <li class="overlay-item"><a href="team.html" data-close>Team</a></li>
+            <li class="overlay-item"><a href="ack.html" data-close>Acknowledgements</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="overlay-h">Links</h3>
+          <ul class="overlay-list">
+            <li class="overlay-item"><a href="#" onclick="alert('Replace with poster link'); return false;">Poster (PDF)</a></li>
+            <li class="overlay-item"><a href="#" onclick="alert('Replace with report link'); return false;">Report</a></li>
+            <li class="overlay-item"><a href="#" onclick="alert('Replace with GitHub link'); return false;">Code</a></li>
+            <li class="overlay-item"><a href="#" onclick="alert('Replace with data link'); return false;">Data</a></li>
+          </ul>
+        </div>
+      </div>
+      <div style="color:var(--grey); font-size:12px;">
+        © 2025 Zhong Lab | UC San Diego
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <section class="gallery-wrap" aria-label="Image gallery">
+      <div class="gallery">
+
+        <div class="col">
+          <a class="tile" id="p1" href="#p1"><img src="images/p1.jpg" alt="Picture 1"><div class="cap">P1</div></a>
+          <a class="tile" id="p2" href="#p2"><img src="images/p2.jpg" alt="Picture 2"><div class="cap">P2</div></a>
+          <a class="tile" id="p3" href="#p3"><img src="images/p3.jpg" alt="Picture 3"><div class="cap">P3</div></a>
+          <a class="tile" id="p4" href="#p4"><img src="images/p4.jpg" alt="Picture 4"><div class="cap">P4</div></a>
+        </div>
+
+        <div class="col">
+          <a class="tile" id="p5" href="#p5"><img src="images/p5.jpg" alt="Picture 5"><div class="cap">P5</div></a>
+          <a class="tile" id="p6" href="#p6"><img src="images/p6.jpg" alt="Picture 6"><div class="cap">P6</div></a>
+          <a class="tile" id="p7" href="#p7"><img src="images/p7.jpg" alt="Picture 7"><div class="cap">P7</div></a>
+          <a class="tile" id="p8" href="#p8"><img src="images/p8.jpg" alt="Picture 8"><div class="cap">P8</div></a>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="copyright" style="padding: 2vh 0 2vh; text-align:center; color:var(--grey); text-transform:uppercase; letter-spacing:.12em; font-size:11px;">
+      © 2025 Zhong Lab | UC San Diego | Taojin Peng & Zhixuan Song
+    </section>
+  </main>
+
+  <script>
+    // -----------------------------
+    // Menu overlay behavior
+    // -----------------------------
+    const overlay = document.getElementById('menuOverlay');
+    const openBtn = document.getElementById('openMenu');
+    const closeBtn = document.getElementById('closeMenu');
+
+    function openMenu(){
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+      closeBtn.focus();
+    }
+    function closeMenu(){
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+      openBtn.focus();
+    }
+    openBtn.addEventListener('click', openMenu);
+    closeBtn.addEventListener('click', closeMenu);
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeMenu(); });
+    window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && overlay.classList.contains('open')) closeMenu(); });
+    overlay.querySelectorAll('[data-close]').forEach(a => a.addEventListener('click', closeMenu));
+  </script>
+</body>
+</html>
