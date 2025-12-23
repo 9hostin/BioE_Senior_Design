@@ -60,9 +60,10 @@
 
     nav.center-nav{
       display:flex;
-      gap:18px;
+      gap:14px 18px;
       justify-content:center;
       flex-wrap:wrap;
+      padding-right: 60px;
     }
 
     .navlink{
@@ -84,9 +85,25 @@
     .right{
       position: absolute;
       right: var(--pad);
+      top: 50%;
+      transform: translateY(-50%);
       display:flex;
       gap:10px;
       align-items:center;
+    }
+
+    @media (max-width: 600px){
+      nav.center-nav{
+        padding-right: 0;
+        gap: 8px 12px;
+      }
+      .navlink{
+        font-size: 11px;
+        letter-spacing: .05em;
+      }
+      .right{
+        display: none;
+      }
     }
 
     .hamburger, .closebtn{
@@ -265,7 +282,7 @@
   <header>
     <div class="topbar">
       <nav class="center-nav" aria-label="Primary">
-        <a class="navlink" href="index.html">Main</a>
+        <a class="navlink" href="main.html">Main</a>
         <a class="navlink" href="background.html">Background</a>
         <a class="navlink" href="wetlab.html">Wet-Lab</a>
         <a class="navlink" href="compbio.html">Comp-Bio</a>
@@ -288,7 +305,7 @@
         <div>
           <h3 class="overlay-h">Navigate</h3>
           <ul class="overlay-list">
-            <li class="overlay-item"><a href="index.html" data-close>Main</a></li>
+            <li class="overlay-item"><a href="main.html" data-close>Main</a></li>
             <li class="overlay-item"><a href="background.html" data-close>Background</a></li>
             <li class="overlay-item"><a href="wetlab.html" data-close>Wet-Lab</a></li>
             <li class="overlay-item"><a href="compbio.html" data-close>Comp-Bio</a></li>
