@@ -73,9 +73,10 @@
 
     nav.center-nav{
       display:flex;
-      gap:18px;
+      gap:14px 18px;
       justify-content:center;
       flex-wrap:wrap;
+      padding-right: 60px;
     }
 
     .navlink{
@@ -97,9 +98,25 @@
     .right{
       position: absolute;
       right: var(--pad);
+      top: 50%;
+      transform: translateY(-50%);
       display:flex;
       gap:10px;
       align-items:center;
+    }
+
+    @media (max-width: 600px){
+      nav.center-nav{
+        padding-right: 0;
+        gap: 8px 12px;
+      }
+      .navlink{
+        font-size: 11px;
+        letter-spacing: .05em;
+      }
+      .right{
+        display: none;
+      }
     }
 
     .hamburger, .closebtn{
