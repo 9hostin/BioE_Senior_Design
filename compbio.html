@@ -40,10 +40,8 @@
        HEADER
     ---------------------------- */
     header{
-      position:fixed;
+      position:sticky;
       top:0;
-      left:0;
-      right:0;
       z-index:50;
       background: rgba(255,255,255,.92);
       backdrop-filter: blur(6px);
@@ -62,10 +60,9 @@
 
     nav.center-nav{
       display:flex;
-      gap:14px 18px;
+      gap:18px;
       justify-content:center;
       flex-wrap:wrap;
-      padding-right: 60px;
     }
 
     .navlink{
@@ -87,25 +84,9 @@
     .right{
       position: absolute;
       right: var(--pad);
-      top: 50%;
-      transform: translateY(-50%);
       display:flex;
       gap:10px;
       align-items:center;
-    }
-
-    @media (max-width: 600px){
-      nav.center-nav{
-        padding-right: 0;
-        gap: 8px 12px;
-      }
-      .navlink{
-        font-size: 11px;
-        letter-spacing: .05em;
-      }
-      .right{
-        display: none;
-      }
     }
 
     .hamburger, .closebtn{
@@ -129,7 +110,7 @@
     main{
       max-width:var(--max);
       margin:0 auto;
-      padding: 60px var(--pad) 90px;
+      padding: 0 var(--pad) 90px;
       position:relative;
     }
 
@@ -141,7 +122,7 @@
     }
 
     .page-header{
-      font-size: clamp(36px, 6vw, 90px);
+      font-size: clamp(36px, 6vw, 75px);
       font-weight:400;
       line-height:0.95;
       letter-spacing:-0.03em;
@@ -195,8 +176,9 @@
         gap: 30px;
       }
       .page-header{
-        font-size: clamp(36px, 10vw, 72px);
+        font-size: clamp(24px, 7vw, 48px);
         margin-bottom: 5vh;
+        word-break: break-word;
       }
       .page-image{
         aspect-ratio: 16 / 9;
@@ -333,8 +315,8 @@
 
   <main>
     <section class="page-section">
-      <h1 class="page-header">Comp-Bio</h1>
-      
+      <h1 class="page-header">Computational Biology</h1>
+
       <div class="page-content">
         <div class="page-image">
           <!-- Replace src with your image path -->
