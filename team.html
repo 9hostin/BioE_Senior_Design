@@ -40,10 +40,8 @@
        HEADER
     ---------------------------- */
     header{
-      position:fixed;
+      position:sticky;
       top:0;
-      left:0;
-      right:0;
       z-index:50;
       background: rgba(255,255,255,.92);
       backdrop-filter: blur(6px);
@@ -62,10 +60,9 @@
 
     nav.center-nav{
       display:flex;
-      gap:14px 18px;
+      gap:18px;
       justify-content:center;
       flex-wrap:wrap;
-      padding-right: 60px;
     }
 
     .navlink{
@@ -87,25 +84,9 @@
     .right{
       position: absolute;
       right: var(--pad);
-      top: 50%;
-      transform: translateY(-50%);
       display:flex;
       gap:10px;
       align-items:center;
-    }
-
-    @media (max-width: 600px){
-      nav.center-nav{
-        padding-right: 0;
-        gap: 8px 12px;
-      }
-      .navlink{
-        font-size: 11px;
-        letter-spacing: .05em;
-      }
-      .right{
-        display: none;
-      }
     }
 
     .hamburger, .closebtn{
@@ -129,7 +110,7 @@
     main{
       max-width:var(--max);
       margin:0 auto;
-      padding: 60px var(--pad) 90px;
+      padding: 0 var(--pad) 90px;
       position:relative;
     }
 
@@ -141,7 +122,7 @@
     }
 
     .page-header{
-      font-size: clamp(36px, 6vw, 90px);
+      font-size: clamp(36px, 6vw, 75px);
       font-weight:400;
       line-height:0.95;
       letter-spacing:-0.03em;
@@ -180,12 +161,77 @@
       letter-spacing: 0.01em;
     }
 
+    .part-title {
+      font-size: 24px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin: 0 0 1em 0;
+      color: var(--fg);
+    }
+
     .page-text p{
       margin: 0 0 1.5em 0;
     }
 
     .page-text p:last-child{
       margin-bottom: 0;
+    }
+
+    /* ----------------------------
+       EMBED SECTION
+    ---------------------------- */
+    .embed-section {
+      margin-top: 8vh;
+    }
+
+    .embed-title {
+      font-size: 24px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin: 0 0 1.5em 0;
+      color: var(--fg);
+      text-align: center;
+    }
+
+    .embed-container {
+      width: 100%;
+      height: 600px;
+      overflow: hidden;
+      background: rgba(0,0,0,.03);
+    }
+
+    .embed-container iframe {
+      width: 100%;
+      height: 100%;
+    }
+
+    .embed-fallback {
+      text-align: center;
+      padding: 40px 20px;
+      background: rgba(0,0,0,.03);
+    }
+
+    .embed-fallback p {
+      margin: 0 0 1em 0;
+      font-size: 14px;
+      color: var(--grey);
+    }
+
+    .external-link {
+      display: inline-block;
+      padding: 12px 24px;
+      background: var(--titleColor);
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 12px;
+      transition: background 0.2s ease;
+    }
+
+    .external-link:hover {
+      background: #8a1212;
     }
 
     /* Responsive */
@@ -200,6 +246,9 @@
       }
       .page-image{
         aspect-ratio: 16 / 9;
+      }
+      .embed-container {
+        height: 400px;
       }
     }
 
@@ -333,20 +382,72 @@
 
   <main>
     <section class="page-section">
-      <h1 class="page-header">Team</h1>
-      
+      <h1 class="page-header">About Team 23</h1>
+
       <div class="page-content">
         <div class="page-image">
           <!-- Replace src with your image path -->
-          <img src="images/team.jpg" alt="Team image">
+          <img src="images/team1.jpg" alt="Team image">
         </div>
-        
-        <div class="page-text">
-          <p>Your team information goes here. Introduce the team members working on this project.</p>
 
-          <p>Add more paragraphs as needed to describe each team member's role and contributions.</p>
+        <div class="page-text">
+          <h2 class="part-title">Taojin Peng</h2>
           
-          <p>Include relevant information about your backgrounds, expertise, and responsibilities in the project.</p>
+          <p>Greetings, this is Taojin majoring in bioengineering: biotechnology. I am currently working in Dr. Zhong Sheng's lab focusing on spatial multi-omics analysis in Alzheimer's Disease human and mice brain samples.</p>
+          
+          <p>Throughout this project, I completed the transcriptomic analysis, presentation preparation, 3D displaying model creation, and this website!</p>
+
+          <p>My favorite part of this project was the opportunity to work with my best friend Zhixuan and contribute to the research in Alzheimer's Disease.</p>
+
+          <p>In the free time, I enjoy trying new bars, brewing tea, exploring jazz music, traveling with my friends, and 3D printing little useless gadgets.</p>
+        </div>
+      </div>
+
+      <div style="margin: 12vh 0;"></div>
+      <div class="page-content">
+        <div class="page-image">
+          <!-- Replace src with your image path -->
+          <img src="images/team2.jpg" alt="Team image">
+        </div>
+
+        <div class="page-text">
+          <h2 class="part-title">Zhixuan Song</h2>
+          
+          <p>Hi there! I'm Zhixuan, a senior biotechnology major student at UCSD and the proud “mom” of our brain organoid family. </p>
+
+          <p>In this project, I am responsible for brain organoids' development and maintenance as well as immunoassays on the organoid samples.</p>
+
+          <p>Together with Taojin, I'm raising the first generation of APOE genotype-specific brain organoid models. Tiny brains, big ambitions😜</p>
+        </div>
+        <div style="margin: 8vh 0;"></div>
+      </div>
+
+      <!-- Embedded Website Section -->
+      <div class="embed-section">
+        <h2 class="embed-title">Know about Zhong Lab</h2>
+        
+        <!-- Try iframe first -->
+        <div class="embed-container" id="embedContainer">
+          <iframe 
+            src="https://systemsbio.ucsd.edu/" 
+            title="Zhong Lab Website" 
+            loading="lazy"
+            sandbox="allow-scripts allow-same-origin allow-popups"
+            id="labIframe"
+          ></iframe>
+        </div>
+
+        <!-- Fallback if iframe doesn't work -->
+        <noscript>
+          <div class="embed-fallback">
+            <p>Unable to load embedded content.</p>
+            <a href="https://systemsbio.ucsd.edu/" target="_blank" rel="noopener noreferrer" class="external-link">Visit Zhong Lab Website →</a>
+          </div>
+        </noscript>
+
+        <!-- Direct link below iframe -->
+        <div style="text-align: center; margin-top: 20px;">
+          <a href="https://systemsbio.ucsd.edu/" target="_blank" rel="noopener noreferrer" class="external-link">Open Zhong Lab Website in New Tab →</a>
         </div>
       </div>
     </section>
@@ -379,6 +480,26 @@
     overlay.addEventListener('click', (e) => { if (e.target === overlay) closeMenu(); });
     window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && overlay.classList.contains('open')) closeMenu(); });
     overlay.querySelectorAll('[data-close]').forEach(a => a.addEventListener('click', closeMenu));
+
+    // -----------------------------
+    // Iframe error handling
+    // -----------------------------
+    const iframe = document.getElementById('labIframe');
+    const embedContainer = document.getElementById('embedContainer');
+
+    // Check if iframe fails to load (due to X-Frame-Options)
+    iframe.addEventListener('error', function() {
+      showFallback();
+    });
+
+    function showFallback() {
+      embedContainer.innerHTML = `
+        <div class="embed-fallback">
+          <p>This website cannot be embedded due to security restrictions.</p>
+          <a href="https://systemsbio.ucsd.edu/" target="_blank" rel="noopener noreferrer" class="external-link">Visit Zhong Lab Website →</a>
+        </div>
+      `;
+    }
   </script>
 </body>
 </html>
