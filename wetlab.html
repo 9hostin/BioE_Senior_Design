@@ -40,10 +40,8 @@
        HEADER
     ---------------------------- */
     header{
-      position:fixed;
+      position:sticky;
       top:0;
-      left:0;
-      right:0;
       z-index:50;
       background: rgba(255,255,255,.92);
       backdrop-filter: blur(6px);
@@ -62,10 +60,9 @@
 
     nav.center-nav{
       display:flex;
-      gap:14px 18px;
+      gap:18px;
       justify-content:center;
       flex-wrap:wrap;
-      padding-right: 60px;
     }
 
     .navlink{
@@ -87,25 +84,9 @@
     .right{
       position: absolute;
       right: var(--pad);
-      top: 50%;
-      transform: translateY(-50%);
       display:flex;
       gap:10px;
       align-items:center;
-    }
-
-    @media (max-width: 600px){
-      nav.center-nav{
-        padding-right: 0;
-        gap: 8px 12px;
-      }
-      .navlink{
-        font-size: 11px;
-        letter-spacing: .05em;
-      }
-      .right{
-        display: none;
-      }
     }
 
     .hamburger, .closebtn{
@@ -129,7 +110,7 @@
     main{
       max-width:var(--max);
       margin:0 auto;
-      padding: 60px var(--pad) 90px;
+      padding: 0 var(--pad) 90px;
       position:relative;
     }
 
@@ -141,7 +122,7 @@
     }
 
     .page-header{
-      font-size: clamp(36px, 6vw, 90px);
+      font-size: clamp(36px, 6vw, 75px);
       font-weight:400;
       line-height:0.95;
       letter-spacing:-0.03em;
@@ -156,6 +137,14 @@
       grid-template-columns: 2fr 1fr;
       gap: 40px;
       align-items: start;
+    }
+    .part-title {
+      font-size: 24px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin: 0 0 1em 0;
+      color: var(--fg);
     }
 
     .page-image{
@@ -333,20 +322,22 @@
 
   <main>
     <section class="page-section">
-      <h1 class="page-header">Wet-Lab</h1>
+      <h1 class="page-header">Wet-Lab Workflow</h1>
       
       <div class="page-content">
         <div class="page-image">
           <!-- Replace src with your image path -->
-          <img src="images/wetlab.jpg" alt="Wet-Lab image">
+          <img src="images/wetlab1.jpg" alt="Wet-Lab image">
         </div>
-        
-        <div class="page-text">
-          <p>Your wet-lab content goes here. Describe the experimental methods and protocols used in your research.</p>
 
-          <p>Add more paragraphs as needed to explain your wet-lab procedures.</p>
+        <div class="page-text">
+          <h2 class="part-title">Part I. iPSC Pluripotency Check</h2>
+
+        <div class="page-text">
           
-          <p>Include relevant information about iPSC culture, brain organoid generation, and other laboratory techniques.</p>
+          <p>The commercial iPSC cell lines were cultured and stained via immunostaining method with antibodies Oct4 and Sox2, the signals were exhibited in RPG (red) signals with DAPI (blue).</p>
+          
+          <p>The images validated the pluripotency of all four cell lines.</p>
         </div>
       </div>
     </section>
