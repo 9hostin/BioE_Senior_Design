@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Wet-Lab | APOE iPSC Brain Organoids</title>
+  <title>Methods | APOE iPSC Brain Organoids</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -84,6 +84,8 @@
     .right{
       position: absolute;
       right: var(--pad);
+      top: 50%;
+      transform: translateY(-50%);
       display:flex;
       gap:10px;
       align-items:center;
@@ -133,10 +135,83 @@
     }
 
     .page-content{
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 40px;
-      align-items: start;
+      display: block;
+    }
+
+    .page-image{
+      float: left;
+      width: 44%;
+      margin: 0 40px 24px 0;
+      background: rgba(0,0,0,.06);
+      overflow: hidden;
+    }
+
+    .page-image img{
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .page-text{
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.85;
+      color: rgba(0,0,0,.78);
+      letter-spacing: 0.01em;
+    }
+
+    .page-text p{
+      margin: 0 0 1.4em 0;
+    }
+
+    .page-text p:last-child{
+      margin-bottom: 0;
+    }
+
+    .page-text h3 {
+      font-size: 11px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin: 1.8em 0 0.6em 0;
+      color: var(--titleColor);
+    }
+
+    .page-text h3:first-child {
+      margin-top: 0;
+    }
+
+    .page-text ul {
+      margin: 0 0 1.4em 0;
+      padding-left: 1.4em;
+      list-style: disc;
+    }
+
+    .page-text li {
+      margin-bottom: 0.4em;
+      line-height: 1.85;
+      color: rgba(0,0,0,.78);
+    }
+
+    .methods-note {
+      margin-top: 2.2em;
+      padding: 18px 22px;
+      background: rgba(166,23,23,.05);
+      border-left: 3px solid var(--titleColor);
+    }
+
+    .methods-note p {
+      margin: 0;
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--fg);
+    }
+
+    /* clearfix */
+    .page-content::after {
+      content: '';
+      display: table;
+      clear: both;
     }
     .part-title {
       font-size: 24px;
@@ -147,48 +222,15 @@
       color: var(--fg);
     }
 
-    .page-image{
-      width: 100%;
-      aspect-ratio: 16 / 10;
-      background: rgba(0,0,0,.06);
-      overflow: hidden;
-    }
-
-    .page-image img{
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .page-text{
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 1.7;
-      color: var(--fg);
-      letter-spacing: 0.01em;
-    }
-
-    .page-text p{
-      margin: 0 0 1.5em 0;
-    }
-
-    .page-text p:last-child{
-      margin-bottom: 0;
-    }
-
-    /* Responsive */
     @media (max-width: 820px){
-      .page-content{
-        grid-template-columns: 1fr;
-        gap: 30px;
+      .page-image{
+        float: none;
+        width: 100%;
+        margin: 0 0 28px 0;
       }
       .page-header{
         font-size: clamp(36px, 10vw, 72px);
         margin-bottom: 5vh;
-      }
-      .page-image{
-        aspect-ratio: 16 / 9;
       }
     }
 
@@ -273,11 +315,10 @@
   <header>
     <div class="topbar">
       <nav class="center-nav" aria-label="Primary">
-        <a class="navlink" href="index.html">Main</a>
+        <a class="navlink" href="index.html">Main/Team</a>
         <a class="navlink" href="background.html">Background</a>
-        <a class="navlink active" href="wetlab.html">Wet-Lab</a>
-        <a class="navlink" href="compbio.html">Comp-Bio</a>
-        <a class="navlink" href="team.html">Team</a>
+        <a class="navlink active" href="wetlab.html">Methods</a>
+        <a class="navlink" href="compbio.html">Results</a>
         <a class="navlink" href="ack.html">Acknowledgements</a>
       </nav>
 
@@ -296,11 +337,10 @@
         <div>
           <h3 class="overlay-h">Navigate</h3>
           <ul class="overlay-list">
-            <li class="overlay-item"><a href="index.html" data-close>Main</a></li>
+            <li class="overlay-item"><a href="index.html" data-close>Main/Team</a></li>
             <li class="overlay-item"><a href="background.html" data-close>Background</a></li>
-            <li class="overlay-item"><a href="wetlab.html" data-close>Wet-Lab</a></li>
-            <li class="overlay-item"><a href="compbio.html" data-close>Comp-Bio</a></li>
-            <li class="overlay-item"><a href="team.html" data-close>Team</a></li>
+            <li class="overlay-item"><a href="wetlab.html" data-close>Methods</a></li>
+            <li class="overlay-item"><a href="compbio.html" data-close>Results</a></li>
             <li class="overlay-item"><a href="ack.html" data-close>Acknowledgements</a></li>
           </ul>
         </div>
@@ -308,42 +348,41 @@
           <h3 class="overlay-h">Links</h3>
           <ul class="overlay-list">
             <li class="overlay-item"><a href="#" onclick="alert('Replace with poster link'); return false;">Poster (PDF)</a></li>
-            <li class="overlay-item"><a href="#" onclick="alert('Replace with report link'); return false;">Report</a></li>
-            <li class="overlay-item"><a href="#" onclick="alert('Replace with GitHub link'); return false;">Code</a></li>
-            <li class="overlay-item"><a href="#" onclick="alert('Replace with data link'); return false;">Data</a></li>
           </ul>
         </div>
       </div>
       <div style="color:var(--grey); font-size:12px;">
-        © 2025 Zhong Lab | UC San Diego
+        © 2026 Zhong Lab | UC San Diego
       </div>
     </div>
   </section>
 
   <main>
     <section class="page-section">
-      <h1 class="page-header">Wet-Lab Workflow</h1>
+      <h1 class="page-header">Methods</h1>
       
       <div class="page-content">
         <div class="page-image">
-          <!-- Replace src with your image path -->
-          <img src="Images/wetlab1.jpg" alt="Wet-Lab image">
+          <img src="images/wetlab1.jpg" alt="APOE-genotype-specific brain organoid platform overview">
         </div>
 
         <div class="page-text">
-          <h2 class="part-title">Part I. iPSC Pluripotency Check</h2>
 
-        <div class="page-text">
-          
-          <p>The commercial iPSC cell lines were cultured and stained via immunostaining method with antibodies Oct4 and Sox2, the signals were exhibited in RPG (red) signals with DAPI (blue).</p>
-          
-          <p>The images validated the pluripotency of all four cell lines.</p>
+          <h3>Goal 1 — Isogenic Brain Organoid Generation</h3>
+          <p>Human isogenic iPSC lines carrying APOE ε4/ε4, ε3/ε3, ε2/ε2, and ko/ko genotypes are differentiated through sequential stages — embryoid body formation, neural induction, expansion, neuronal differentiation, and maturation — to produce APOE-genotype-specific brain organoids. Organoid quality is confirmed by structural integrity (ventricular zone formation, cortical plate-like layering, target diameter) and cellular composition (progenitors, neurons, astrocytes).</p>
+
+          <h3>Goal 2 — Phenotypic Characterization of AD Pathology</h3>
+          <p>Mature organoids are profiled for five AD hallmark phenotypes: Aβ accumulation, tau hyperphosphorylation and neurofibrillary tangle formation, synaptic dysfunction and loss, neuroinflammation, and neurodegeneration. Quantitative molecular profiling is performed via Western blot (Tau, p-Tau, Synaptophysin, PSD-95, Caspase-3, and others) and sandwich ELISA (Aβ40, Aβ42, ApoE). Spatial co-profiling by immunofluorescence and confocal imaging maps the distribution of these markers relative to defined cell-type populations.</p>
+
+          <h3>Goal 3 — Identification of Pathogenic Molecular Pathways</h3>
+          <p>Transcriptome-wide RNA-seq profiling is used to identify APOE-dependent differentially expressed genes and dysregulated pathways across genotypes. Pathway enrichment analysis maps disease-relevant signaling networks, and key transcriptomic signatures are orthogonally validated by RT-qPCR.</p>
+
         </div>
       </div>
     </section>
 
     <section class="copyright-section">
-      © 2025 Zhong Lab | UC San Diego | Taojin Peng & Zhixuan Song
+      © 2026 Zhong Lab | UC San Diego | Taojin Peng & Zhixuan Song
     </section>
   </main>
 
