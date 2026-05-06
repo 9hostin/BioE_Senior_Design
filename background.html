@@ -84,6 +84,8 @@
     .right{
       position: absolute;
       right: var(--pad);
+      top: 50%;
+      transform: translateY(-50%);
       display:flex;
       gap:10px;
       align-items:center;
@@ -133,54 +135,98 @@
     }
 
     .page-content{
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 40px;
-      align-items: start;
+      display: block;
     }
 
     .page-image{
-      width: 100%;
-      aspect-ratio: 16 / 10;
+      float: left;
+      width: 42%;
+      margin: 0 40px 24px 0;
       background: rgba(0,0,0,.06);
       overflow: hidden;
     }
 
     .page-image img{
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      height: auto;
       display: block;
     }
 
     .page-text{
-      font-size: 14px;
+      font-size: 15px;
       font-weight: 400;
-      line-height: 1.7;
-      color: var(--fg);
+      line-height: 1.85;
+      color: rgba(0,0,0,.78);
       letter-spacing: 0.01em;
     }
 
     .page-text p{
-      margin: 0 0 1.5em 0;
+      margin: 0 0 1.4em 0;
     }
 
     .page-text p:last-child{
       margin-bottom: 0;
     }
 
-    /* Responsive */
+    .page-text h3 {
+      font-size: 11px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      margin: 1.8em 0 0.6em 0;
+      color: var(--titleColor);
+    }
+
+    .page-text h3:first-child {
+      margin-top: 0;
+    }
+
+    .page-text ul {
+      margin: 0 0 1.4em 0;
+      padding-left: 1.4em;
+      list-style: disc;
+    }
+
+    .page-text ul ul {
+      margin: 0.3em 0 0.3em 0;
+      list-style: circle;
+    }
+
+    .page-text li {
+      margin-bottom: 0.4em;
+      line-height: 1.85;
+      color: rgba(0,0,0,.78);
+    }
+
+    .research-question {
+      margin-top: 2.2em;
+      padding: 18px 22px;
+      background: rgba(166,23,23,.05);
+      border-left: 3px solid var(--titleColor);
+    }
+
+    .research-question p {
+      margin: 0;
+      color: var(--fg);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* clearfix so section grows around the float */
+    .page-content::after {
+      content: '';
+      display: table;
+      clear: both;
+    }
     @media (max-width: 820px){
-      .page-content{
-        grid-template-columns: 1fr;
-        gap: 30px;
+      .page-image{
+        float: none;
+        width: 100%;
+        margin: 0 0 28px 0;
       }
       .page-header{
         font-size: clamp(36px, 10vw, 72px);
         margin-bottom: 5vh;
-      }
-      .page-image{
-        aspect-ratio: 16 / 9;
       }
     }
 
@@ -265,11 +311,10 @@
   <header>
     <div class="topbar">
       <nav class="center-nav" aria-label="Primary">
-        <a class="navlink" href="index.html">Main</a>
+        <a class="navlink" href="index.html">Main/Team</a>
         <a class="navlink active" href="background.html">Background</a>
-        <a class="navlink" href="wetlab.html">Wet-Lab</a>
-        <a class="navlink" href="compbio.html">Comp-Bio</a>
-        <a class="navlink" href="team.html">Team</a>
+        <a class="navlink" href="wetlab.html">Methods</a>
+        <a class="navlink" href="compbio.html">Results</a>
         <a class="navlink" href="ack.html">Acknowledgements</a>
       </nav>
 
@@ -288,11 +333,10 @@
         <div>
           <h3 class="overlay-h">Navigate</h3>
           <ul class="overlay-list">
-            <li class="overlay-item"><a href="index.html" data-close>Main</a></li>
+            <li class="overlay-item"><a href="index.html" data-close>Main/Team</a></li>
             <li class="overlay-item"><a href="background.html" data-close>Background</a></li>
-            <li class="overlay-item"><a href="wetlab.html" data-close>Wet-Lab</a></li>
-            <li class="overlay-item"><a href="compbio.html" data-close>Comp-Bio</a></li>
-            <li class="overlay-item"><a href="team.html" data-close>Team</a></li>
+            <li class="overlay-item"><a href="wetlab.html" data-close>Methods</a></li>
+            <li class="overlay-item"><a href="compbio.html" data-close>Results</a></li>
             <li class="overlay-item"><a href="ack.html" data-close>Acknowledgements</a></li>
           </ul>
         </div>
@@ -300,40 +344,46 @@
           <h3 class="overlay-h">Links</h3>
           <ul class="overlay-list">
             <li class="overlay-item"><a href="#" onclick="alert('Replace with poster link'); return false;">Poster (PDF)</a></li>
-            <li class="overlay-item"><a href="#" onclick="alert('Replace with report link'); return false;">Report</a></li>
-            <li class="overlay-item"><a href="#" onclick="alert('Replace with GitHub link'); return false;">Code</a></li>
-            <li class="overlay-item"><a href="#" onclick="alert('Replace with data link'); return false;">Data</a></li>
           </ul>
         </div>
       </div>
       <div style="color:var(--grey); font-size:12px;">
-        © 2025 Zhong Lab | UC San Diego
+        © 2026 Zhong Lab | UC San Diego
       </div>
     </div>
   </section>
 
   <main>
     <section class="page-section">
-      <h1 class="page-header">Foundational Information</h1>
+      <h1 class="page-header">Background</h1>
       
       <div class="page-content">
-        <div class="page-image">
-          <!-- Replace src with your image path -->
-          <img src="images/background.jpg" alt="Background image">
-        </div>
-        
         <div class="page-text">
-          <p>Your background content goes here. Describe the scientific context and motivation for your research.</p>
 
-          <p>Add more paragraphs as needed to explain the background of your project.</p>
-          
-          <p>Include relevant information about APOE genotypes, Alzheimer's disease, and iPSC-derived brain organoids.</p>
+          <div class="page-image">
+            <img src="images/background.jpg" alt="Schematic of Alzheimer's disease pathology and brain organoid model">
+          </div>
+
+          <h3>Alzheimer's Disease (AD)</h3>
+          <p>Alzheimer's disease is the leading cause of dementia worldwide, characterized by two defining neuropathological hallmarks: extracellular amyloid-β (Aβ) plaques and intracellular neurofibrillary tangles composed of hyperphosphorylated tau protein. These lesions drive progressive synaptic dysfunction, neuronal loss, and irreversible cognitive decline.</p>
+
+          <h3>APOE &amp; Genetic Risk</h3>
+          <p>Apolipoprotein E (APOE) is the principal lipid transport protein in the central nervous system and the strongest known genetic risk factor for late-onset AD. Its three major isoforms confer distinct disease susceptibility profiles: APOE ε2 is neuroprotective, APOE ε3 is considered risk-neutral, and APOE ε4 markedly elevates disease susceptibility while accelerating both amyloid deposition and tau pathology.</p>
+
+          <h3>Brain Organoids as a Disease Model</h3>
+          <p>Human iPSC-derived brain organoids are self-organizing three-dimensional neural tissues that faithfully recapitulate key features of human cortical cytoarchitecture and development. Unlike conventional 2D cultures or rodent models, organoids permit direct interrogation of human-specific neurodegenerative mechanisms in vitro and can provide an unprecedented platform for modeling APOE genotype-dependent AD pathology at cellular resolution.</p>
+
+          <div class="research-question">
+            <p><strong>Research Question</strong><br>
+            Can APOE isoform-specific Alzheimer's disease pathology be faithfully recapitulated using isogenic iPSC-derived brain organoids?</p>
+          </div>
+
         </div>
       </div>
     </section>
 
     <section class="copyright-section">
-      © 2025 Zhong Lab | UC San Diego | Taojin Peng & Zhixuan Song
+      © 2026 Zhong Lab | UC San Diego | Taojin Peng & Zhixuan Song
     </section>
   </main>
 
