@@ -126,13 +126,13 @@
     ---------------------------- */
     .bubble-nav{
       position: fixed;
-      right: 40px;
+      right: 28px;
       top: 50%;
       transform: translateY(-50%);
       z-index: 40;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 14px;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.6s ease;
@@ -145,24 +145,57 @@
 
     .bubble{
       position: relative;
-      width: 80px;
-      height: 80px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       cursor: pointer;
       transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      box-shadow: 0 3px 14px rgba(0,0,0,0.15);
       background: #eee;
     }
 
     .bubble:nth-child(1){ transform: translateX(0px); }
-    .bubble:nth-child(2){ transform: translateX(-30px); }
-    .bubble:nth-child(3){ transform: translateX(15px); }
-    .bubble:nth-child(4){ transform: translateX(-20px); }
-    .bubble:nth-child(5){ transform: translateX(10px); }
+    .bubble:nth-child(2){ transform: translateX(-18px); }
+    .bubble:nth-child(3){ transform: translateX(9px); }
+    .bubble:nth-child(4){ transform: translateX(-12px); }
+    .bubble:nth-child(5){ transform: translateX(6px); }
 
     .bubble:hover{
-      transform: scale(1.15) !important;
-      box-shadow: 0 8px 30px rgba(166, 23, 23, 0.3);
+      transform: scale(1.18) !important;
+      box-shadow: 0 6px 22px rgba(166, 23, 23, 0.3);
+    }
+
+    /* Inner shake wrapper — animates independently of the bubble's offset transform */
+    .bubble-shake{
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    @keyframes bubbleWiggle {
+      0%, 82%, 100% { transform: rotate(0deg); }
+      84%  { transform: rotate(-7deg); }
+      86%  { transform: rotate(7deg); }
+      88%  { transform: rotate(-5deg); }
+      90%  { transform: rotate(4deg); }
+      92%  { transform: rotate(-2deg); }
+      94%  { transform: rotate(0deg); }
+    }
+
+    .bubble-shake{
+      animation: bubbleWiggle 3.6s ease-in-out infinite;
+    }
+
+    .bubble:nth-child(1) .bubble-shake { animation-delay: 0s; }
+    .bubble:nth-child(2) .bubble-shake { animation-delay: 0.5s; }
+    .bubble:nth-child(3) .bubble-shake { animation-delay: 1.0s; }
+    .bubble:nth-child(4) .bubble-shake { animation-delay: 1.5s; }
+    .bubble:nth-child(5) .bubble-shake { animation-delay: 2.0s; }
+
+    .bubble:hover .bubble-shake{
+      animation: none;
     }
 
     .bubble img{
@@ -181,21 +214,21 @@
 
     .bubble-label{
       position: absolute;
-      right: calc(100% + 15px);
+      right: calc(100% + 12px);
       top: 50%;
       transform: translateY(-50%);
       background: var(--titleColor);
       color: #fff;
-      padding: 6px 12px;
+      padding: 5px 10px;
       border-radius: 20px;
-      font-size: 10px;
+      font-size: 9px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       white-space: nowrap;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s ease, transform 0.3s ease;
-      transform: translateY(-50%) translateX(10px);
+      transform: translateY(-50%) translateX(8px);
     }
 
     .bubble:hover .bubble-label{
@@ -214,64 +247,144 @@
       z-index:1;
     }
 
-    .gallery-wrap{
-      min-height: 100vh;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding: 10vh 0;
+    /* ----------------------------
+       TEAM SECTION
+    ---------------------------- */
+    .team-wrap{
+      padding: 12vh 0 10vh;
     }
 
-    .gallery{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--gap);
-      align-items:center;
+    .team-header{
+      font-size: clamp(36px, 6vw, 90px);
+      font-weight: 400;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: var(--titleColor);
+      margin: 0 0 10vh 0;
+      text-transform: uppercase;
+      text-align: center;
     }
 
-    .col{
-      display:grid;
-      grid-template-rows: repeat(4, auto);
-      gap: var(--gap);
-      align-items:center;
-      justify-items:center;
+    .team-grid{
+      display: flex;
+      flex-direction: column;
+      gap: 10vh;
     }
 
-    .tile{
-      width: var(--tileW);
-      height: var(--tileH);
-      display:block;
-      position:relative;
-      overflow:hidden;
+    /* Each member is a horizontal row */
+    .member{
+      display: grid;
+      grid-template-columns: 2fr 3fr;
+      gap: 50px;
+      align-items: start;
+    }
+
+    /* Zhixuan: photo right, text left */
+    .member-reverse{
+      grid-template-columns: 3fr 2fr;
+    }
+
+    .member-reverse .member-photo{
+      order: 2;
+    }
+
+    .member-reverse .member-info{
+      order: 1;
+    }
+
+    .member-photo{
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
       background: rgba(0,0,0,.06);
-      transform: translateZ(0);
     }
 
-    .tile img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
-      filter: grayscale(100%);
-      transition: filter .25s ease, transform .25s ease;
-      will-change: transform, filter;
-    }
-    .tile:hover img{
-      filter: grayscale(0%);
-      transform: scale(1.02);
+    .member-photo img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
-    .cap{
-      position:absolute;
-      left:10px;
-      top:10px;
-      color: rgba(0,0,0,.72);
-      mix-blend-mode:multiply;
-      pointer-events:none;
-      text-transform:uppercase;
-      letter-spacing:.10em;
-      font-size:11px;
-      line-height:1.2;
+    .member-info{
+      padding-top: 8px;
+    }
+
+    .member-name{
+      font-size: 20px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin: 0 0 14px 0;
+      color: var(--fg);
+    }
+
+    .member-bio{
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.75;
+      color: var(--grey);
+      letter-spacing: 0.01em;
+    }
+
+    .member-bio p{
+      margin: 0 0 1em 0;
+    }
+
+    .member-bio p:last-child{
+      margin-bottom: 0;
+    }
+
+    /* Lab embed section */
+    .lab-row{
+      margin-top: 10vh;
+      padding-top: 6vh;
+      border-top: 1px solid rgba(0,0,0,.08);
+      text-align: center;
+    }
+
+    .lab-row-title{
+      font-size: 11px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--grey);
+      margin: 0 0 3vh 0;
+    }
+
+    .lab-embed{
+      width: 100%;
+      height: 560px;
+      background: rgba(0,0,0,.03);
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+
+    .lab-embed iframe{
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .lab-embed-fallback{
+      display: none;
+      padding: 40px 20px;
+      background: rgba(0,0,0,.03);
+    }
+
+    .lab-link a{
+      display: inline-block;
+      padding: 13px 28px;
+      background: var(--titleColor);
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-size: 11px;
+      transition: background 0.2s ease;
+    }
+
+    .lab-link a:hover{
+      background: #8a1212;
     }
 
     /* Scroll indicator */
@@ -306,30 +419,33 @@
 
     /* Responsive */
     @media (max-width: 820px){
-      :root{
-        --tileW: min(92vw, 640px);
-        --tileH: 320px;
-      }
-      .gallery{ grid-template-columns: 1fr; }
-      .gallery-wrap{ padding: 8vh 0 12vh; }
+      .team-grid{ gap: 8vh; }
+      .member{ grid-template-columns: 1fr; gap: 24px; }
+      .member-reverse{ grid-template-columns: 1fr; }
+      .member-reverse .member-photo{ order: 0; }
+      .member-reverse .member-info{ order: 0; }
+      .member-photo{ aspect-ratio: 4 / 3; }
+      .team-wrap{ padding: 8vh 0 10vh; }
+      .team-header{ margin-bottom: 6vh; }
+      .lab-embed{ height: 380px; }
       .title-base,
       .title-half{
         font-size: clamp(38px, 10vw, 90px);
         line-height: 0.95;
       }
       .bubble-nav{
-        right: 15px;
-        gap: 15px;
+        right: 10px;
+        gap: 10px;
       }
       .bubble{
-        width: 55px;
-        height: 55px;
+        width: 36px;
+        height: 36px;
       }
       .bubble:nth-child(1){ transform: translateX(0px); }
-      .bubble:nth-child(2){ transform: translateX(-15px); }
-      .bubble:nth-child(3){ transform: translateX(8px); }
-      .bubble:nth-child(4){ transform: translateX(-10px); }
-      .bubble:nth-child(5){ transform: translateX(5px); }
+      .bubble:nth-child(2){ transform: translateX(-10px); }
+      .bubble:nth-child(3){ transform: translateX(5px); }
+      .bubble:nth-child(4){ transform: translateX(-7px); }
+      .bubble:nth-child(5){ transform: translateX(4px); }
       .bubble-label{
         display: none;
       }
@@ -428,23 +544,23 @@
   <!-- Bubble Navigation -->
   <nav class="bubble-nav" id="bubbleNav" aria-label="Visual navigation">
     <a class="bubble" href="background.html">
-      <img src="images/p1.jpg" alt="Background">
+      <span class="bubble-shake"><img src="images/p1.jpg" alt="Background"></span>
       <span class="bubble-label">Background</span>
     </a>
     <a class="bubble" href="wetlab.html">
-      <img src="images/p2.jpg" alt="Wet-Lab">
-      <span class="bubble-label">Wet-Lab</span>
+      <span class="bubble-shake"><img src="images/p2.jpg" alt="Wet-Lab"></span>
+      <span class="bubble-label">Methods</span>
     </a>
     <a class="bubble" href="compbio.html">
-      <img src="images/p3.jpg" alt="Comp-Bio">
-      <span class="bubble-label">Comp-Bio</span>
+      <span class="bubble-shake"><img src="images/p3.jpg" alt="Comp-Bio"></span>
+      <span class="bubble-label">Results</span>
     </a>
     <a class="bubble" href="team.html">
-      <img src="images/p4.jpg" alt="Team">
+      <span class="bubble-shake"><img src="images/p4.jpg" alt="Team"></span>
       <span class="bubble-label">Team</span>
     </a>
     <a class="bubble" href="ack.html">
-      <img src="images/p5.jpg" alt="Acknowledgements">
+      <span class="bubble-shake"><img src="images/p5.jpg" alt="Acknowledgements"></span>
       <span class="bubble-label">Acknowledgements</span>
     </a>
   </nav>
@@ -465,8 +581,8 @@
           <ul class="overlay-list">
             <li class="overlay-item"><a href="index.html" data-close>Main</a></li>
             <li class="overlay-item"><a href="background.html" data-close>Background</a></li>
-            <li class="overlay-item"><a href="wetlab.html" data-close>Wet-Lab</a></li>
-            <li class="overlay-item"><a href="compbio.html" data-close>Comp-Bio</a></li>
+            <li class="overlay-item"><a href="wetlab.html" data-close>Methods</a></li>
+            <li class="overlay-item"><a href="compbio.html" data-close>Results</a></li>
             <li class="overlay-item"><a href="team.html" data-close>Team</a></li>
             <li class="overlay-item"><a href="ack.html" data-close>Acknowledgements</a></li>
           </ul>
@@ -475,36 +591,70 @@
           <h3 class="overlay-h">Links</h3>
           <ul class="overlay-list">
             <li class="overlay-item"><a href="#" onclick="alert('Replace with poster link'); return false;">Poster (PDF)</a></li>
-            <li class="overlay-item"><a href="#" onclick="alert('Replace with report link'); return false;">Report</a></li>
-            <li class="overlay-item"><a href="#" onclick="alert('Replace with GitHub link'); return false;">Code</a></li>
-            <li class="overlay-item"><a href="#" onclick="alert('Replace with data link'); return false;">Data</a></li>
           </ul>
         </div>
       </div>
       <div style="color:var(--grey); font-size:12px;">
-        © 2025 Zhong Lab | UC San Diego
+        © 2026 Zhong Lab | UC San Diego
       </div>
     </div>
   </section>
 
   <main>
-    <section class="gallery-wrap" aria-label="Image gallery">
-      <div class="gallery">
+    <section class="team-wrap" aria-label="Meet the team">
+      <h2 class="team-header">About Team 23</h2>
 
-        <div class="col">
-          <a class="tile" id="p1" href="#p1"><img src="images/p1.jpg" alt="Picture 1"><div class="cap">P1</div></a>
-          <a class="tile" id="p2" href="#p2"><img src="images/p2.jpg" alt="Picture 2"><div class="cap">P2</div></a>
-          <a class="tile" id="p3" href="#p3"><img src="images/p3.jpg" alt="Picture 3"><div class="cap">P3</div></a>
-          <a class="tile" id="p4" href="#p4"><img src="images/p4.jpg" alt="Picture 4"><div class="cap">P4</div></a>
+      <div class="team-grid">
+        <!-- Zhixuan: text left, photo right -->
+        <div class="member member-reverse">
+          <div class="member-photo">
+            <img src="images/team2.jpg" alt="Zhixuan Song">
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">Zhixuan Song</h3>
+            <div class="member-bio">
+              <p>Hi there! I'm Zhixuan, a senior biotechnology major student at UCSD and the proud "mom" of our brain organoid family.</p>
+              <p>In this project, I am responsible for brain organoids' development and maintenance as well as immunoassays on the organoid samples.</p>
+              <p>Together with Taojin, I'm raising the first generation of APOE genotype-specific brain organoid models. Tiny brains, big ambitions 😜</p>
+            </div>
+          </div>
         </div>
 
-        <div class="col">
-          <a class="tile" id="p5" href="#p5"><img src="images/p5.jpg" alt="Picture 5"><div class="cap">P5</div></a>
-          <a class="tile" id="p6" href="#p6"><img src="images/p6.jpg" alt="Picture 6"><div class="cap">P6</div></a>
-          <a class="tile" id="p7" href="#p7"><img src="images/p7.jpg" alt="Picture 7"><div class="cap">P7</div></a>
-          <a class="tile" id="p8" href="#p8"><img src="images/p8.jpg" alt="Picture 8"><div class="cap">P8</div></a>
+        <!-- Taojin: photo left, text right -->
+        <div class="member">
+          <div class="member-photo">
+            <img src="images/team1.jpg" alt="Taojin Peng">
+          </div>
+          <div class="member-info">
+            <h3 class="member-name">Taojin Peng</h3>
+            <div class="member-bio">
+              <p>Greetings, this is Taojin majoring in bioengineering: biotechnology. I am currently working in Dr. Zhong Sheng's lab focusing on spatial multi-omics analysis in Alzheimer's Disease human and mice brain samples.</p>
+              <p>Throughout this project, I completed the transcriptomic analysis, presentation preparation, 3D displaying model creation, and this website!</p>
+              <p>My favorite part of this project was the opportunity to work with my best friend Zhixuan and contribute to the research in Alzheimer's Disease.</p>
+              <p>In the free time, I enjoy trying new bars, brewing tea, exploring jazz music, traveling with my friends, and 3D printing little useless gadgets.</p>
+            </div>
+          </div>
         </div>
 
+      </div>
+
+      <!-- Zhong Lab embedded website -->
+      <div class="lab-row">
+        <p class="lab-row-title">Our Research Group</p>
+
+        <div class="lab-embed" id="labEmbed">
+          <iframe
+            id="labIframe"
+            src="https://systemsbio.ucsd.edu/"
+            title="Zhong Lab Website"
+            loading="lazy"
+            sandbox="allow-scripts allow-same-origin allow-popups allow-forms"
+          ></iframe>
+        </div>
+
+        <div class="lab-link">
+          <a href="https://systemsbio.ucsd.edu/" target="_blank" rel="noopener noreferrer">Open Zhong Lab in New Tab →</a>
+        </div>
       </div>
     </section>
   </main>
@@ -642,8 +792,28 @@
     bubbles.forEach((bubble, index) => {
       bubble.style.transitionDelay = `${index * 0.1}s`;
     });
+
+    // -----------------------------
+    // Zhong Lab iframe fallback
+    // If the site blocks embedding, swap to a message + link
+    // -----------------------------
+    const labIframe = document.getElementById('labIframe');
+    const labEmbed = document.getElementById('labEmbed');
+
+    // Use a timeout — if the iframe src is blocked by X-Frame-Options,
+    // it silently fails rather than firing 'error', so we detect via load timing.
+    let iframeLoaded = false;
+    labIframe.addEventListener('load', () => { iframeLoaded = true; });
+
+    setTimeout(() => {
+      if (!iframeLoaded) {
+        labEmbed.innerHTML = `
+          <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:16px;color:var(--grey);">
+            <p style="margin:0;font-size:12px;text-transform:uppercase;letter-spacing:.1em;">This site restricts embedding.</p>
+            <a href="https://systemsbio.ucsd.edu/" target="_blank" rel="noopener noreferrer" style="display:inline-block;padding:12px 24px;background:var(--titleColor);color:#fff;font-size:11px;text-transform:uppercase;letter-spacing:.1em;">Open Zhong Lab Website →</a>
+          </div>`;
+      }
+    }, 4000);
   </script>
 </body>
 </html>
-
- 
