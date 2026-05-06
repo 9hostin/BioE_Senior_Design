@@ -84,6 +84,8 @@
     .right{
       position: absolute;
       right: var(--pad);
+      top: 50%;
+      transform: translateY(-50%);
       display:flex;
       gap:10px;
       align-items:center;
@@ -266,11 +268,10 @@
   <header>
     <div class="topbar">
       <nav class="center-nav" aria-label="Primary">
-        <a class="navlink" href="index.html">Main</a>
+        <a class="navlink" href="index.html">Main/Team</a>
         <a class="navlink" href="background.html">Background</a>
-        <a class="navlink" href="wetlab.html">Wet-Lab</a>
-        <a class="navlink" href="compbio.html">Comp-Bio</a>
-        <a class="navlink" href="team.html">Team</a>
+        <a class="navlink" href="wetlab.html">Methods</a>
+        <a class="navlink" href="compbio.html">Results</a>
         <a class="navlink active" href="ack.html">Acknowledgements</a>
       </nav>
 
@@ -289,11 +290,10 @@
         <div>
           <h3 class="overlay-h">Navigate</h3>
           <ul class="overlay-list">
-            <li class="overlay-item"><a href="index.html" data-close>Main</a></li>
+            <li class="overlay-item"><a href="index.html" data-close>Main/Team</a></li>
             <li class="overlay-item"><a href="background.html" data-close>Background</a></li>
-            <li class="overlay-item"><a href="wetlab.html" data-close>Wet-Lab</a></li>
-            <li class="overlay-item"><a href="compbio.html" data-close>Comp-Bio</a></li>
-            <li class="overlay-item"><a href="team.html" data-close>Team</a></li>
+            <li class="overlay-item"><a href="wetlab.html" data-close>Methods</a></li>
+            <li class="overlay-item"><a href="compbio.html" data-close>Results</a></li>
             <li class="overlay-item"><a href="ack.html" data-close>Acknowledgements</a></li>
           </ul>
         </div>
@@ -301,14 +301,12 @@
           <h3 class="overlay-h">Links</h3>
           <ul class="overlay-list">
             <li class="overlay-item"><a href="#" onclick="alert('Replace with poster link'); return false;">Poster (PDF)</a></li>
-            <li class="overlay-item"><a href="#" onclick="alert('Replace with report link'); return false;">Report</a></li>
-            <li class="overlay-item"><a href="#" onclick="alert('Replace with GitHub link'); return false;">Code</a></li>
-            <li class="overlay-item"><a href="#" onclick="alert('Replace with data link'); return false;">Data</a></li>
+
           </ul>
         </div>
       </div>
       <div style="color:var(--grey); font-size:12px;">
-        © 2025 Zhong Lab | UC San Diego
+        © 2026 Zhong Lab | UC San Diego
       </div>
     </div>
   </section>
@@ -336,7 +334,7 @@
     </section>
 
     <section class="copyright-section">
-      © 2025 Zhong Lab | UC San Diego | Taojin Peng & Zhixuan Song
+      © 2026 Zhong Lab | UC San Diego | Taojin Peng & Zhixuan Song
     </section>
   </main>
 
