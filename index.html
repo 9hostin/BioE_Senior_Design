@@ -334,7 +334,42 @@
     .member-bio p:last-child{
       margin-bottom: 0;
     }
+    
+/* ----------------------------
+   PROJECT VIDEO SECTION
+---------------------------- */
+    .project-video-section{
+      margin: 8vh auto 4vh;
+      max-width: 900px;
+      text-align: center;
+    }
 
+    .project-video-title{
+      font-size: 13px;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--grey);
+      margin: 0 0 22px 0;
+    }
+
+    .video-container{
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: rgba(0,0,0,.05);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+    }
+
+    .video-container iframe{
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    
     /* Lab embed section */
     .lab-row{
       margin-top: 10vh;
@@ -634,14 +669,20 @@
 
       </div>
 
+    <div class="project-video-section">
+      <h3 class="project-video-title">Project Video</h3>
+
       <div class="video-container">
         <iframe
-          src="https://youtu.be/kY6zqHXwD3s"
+          src="https://www.youtube.com/embed/kY6zqHXwD3s"
           title="Senior Design Project Video"
           frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
           allowfullscreen>
         </iframe>
       </div>
+    </div>
 
       <!-- Zhong Lab embedded website -->
       <div class="lab-row">
